@@ -6,16 +6,15 @@
     <title>Приглашение на День Рождения</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink: #FF6B8B;
-            --yellow: #FFBE0B;
-            --orange: #FF8E3C;
-            --purple: #A78BFA;
-            --blue: #4ECDC4;
-            --dark: #292F36;
-            --light: #F7FFF7;
+            --pink: #FFB7C5;
+            --peach: #FFDAC1;
+            --lavender: #E2F0CB;
+            --mint: #B5EAD7;
+            --lilac: #C7CEEA;
+            --dark: #333333;
         }
         
         * {
@@ -25,14 +24,14 @@
         }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
         }
         
-        /* Анимированный градиент */
+        /* Анимированный градиент с плавными переходами */
         .gradient-bg {
             position: fixed;
             top: 0;
@@ -40,9 +39,9 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            background: linear-gradient(-45deg, var(--pink), var(--yellow), var(--orange), var(--purple), var(--blue));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: linear-gradient(-45deg, var(--pink), var(--peach), var(--lavender), var(--mint), var(--lilac));
+            background-size: 300% 300%;
+            animation: gradientBG 25s ease infinite;
         }
         
         @keyframes gradientBG {
@@ -51,34 +50,40 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Летающие сердечки */
+        /* Большие летающие сердечки */
         .heart {
             position: absolute;
-            font-size: 24px;
+            font-size: 42px;
             z-index: -1;
-            animation: float 8s linear infinite;
+            animation: float linear infinite;
             cursor: pointer;
-            transition: transform 0.2s;
+            opacity: 0.7;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        
+        .heart:hover {
+            opacity: 1;
+            transform: scale(1.2);
         }
         
         @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+            0% { transform: translate(0, 110vh) rotate(0deg); }
+            100% { transform: translate(calc(100vw - 100px), -100px) rotate(360deg); }
         }
         
-        /* Эффект фейерверка */
+        /* Эффект фейерверка при клике */
         .particle {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             pointer-events: none;
-            animation: explode 1s ease-out forwards;
+            animation: explode 1.2s ease-out forwards;
         }
         
         @keyframes explode {
-            0% { transform: translate(0, 0); opacity: 1; }
-            100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
         }
         
         .container {
@@ -91,184 +96,276 @@
         
         header {
             text-align: center;
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease;
+            margin-bottom: 50px;
         }
         
         h1 {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
+        /* Стильная карточка приглашения */
         .invitation-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .invitation-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: shine 8s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
         }
         
         .invitation-text {
             font-size: 1.1rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
         }
         
         .invitation-text p {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         
         .emoji-list {
             list-style-type: none;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .emoji-list li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             position: relative;
-            padding-left: 35px;
+            padding-left: 40px;
+            font-size: 1.05rem;
         }
         
         .emoji-list li:before {
             position: absolute;
             left: 0;
             top: 0;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
         
         .section {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         h2 {
-            font-size: 1.8rem;
-            color: var(--pink);
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 25px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink), var(--lilac));
+            border-radius: 3px;
         }
         
         .location {
             text-align: center;
             font-size: 1.3rem;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255,107,139,0.1);
-            border-radius: 10px;
+            margin: 25px 0;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
             border-left: 4px solid var(--pink);
+            font-weight: 500;
         }
         
+        /* Вишлист с бронированием */
         .wishlist {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 25px 0;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
         }
         
         .wish-item {
             background: white;
-            border: 2px solid var(--pink);
-            padding: 12px 25px;
-            border-radius: 30px;
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1rem;
-            color: var(--pink);
-            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         
-        .wish-item:hover, .wish-item.selected {
+        .wish-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .wish-item.selected {
+            border-color: var(--pink);
+            background-color: rgba(255, 183, 197, 0.1);
+            position: relative;
+        }
+        
+        .wish-item.selected::after {
+            content: "✓ Забронировано";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px;
             background: var(--pink);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,107,139,0.3);
+            font-size: 0.8rem;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
         
+        .wish-item .reserved-by {
+            font-size: 0.8rem;
+            color: var(--pink);
+            margin-top: 8px;
+            display: none;
+        }
+        
+        .wish-item.selected .reserved-by {
+            display: block;
+        }
+        
+        /* Форма */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-weight: 500;
             color: var(--dark);
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border: 2px solid #eee;
             border-radius: 12px;
             font-family: inherit;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background: rgba(255,255,255,0.8);
         }
         
         input:focus, select:focus, textarea:focus {
             border-color: var(--pink);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255,107,139,0.2);
+            box-shadow: 0 0 0 4px rgba(255,183,197,0.3);
         }
         
+        /* Кнопка-сердечко */
         .heart-btn {
             display: block;
-            width: 200px;
-            height: 60px;
-            margin: 30px auto 0;
-            background: var(--pink);
+            width: 220px;
+            height: 70px;
+            margin: 40px auto 0;
+            background: linear-gradient(45deg, var(--pink), var(--lilac));
             color: white;
             border: none;
-            border-radius: 60px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            border-radius: 70px;
+            font-size: 1.3rem;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(255,107,139,0.4);
+            box-shadow: 0 10px 30px rgba(255,183,197,0.4);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
         .heart-btn:hover {
-            transform: scale(1.05);
-            background: #ff4d73;
-            box-shadow: 0 8px 25px rgba(255,107,139,0.5);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255,183,197,0.6);
         }
         
-        .heart-btn:before {
+        .heart-btn::before {
             content: "❤";
             position: absolute;
-            left: 25px;
+            left: 30px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             animation: pulse 1.5s infinite;
         }
         
         @keyframes pulse {
             0% { transform: translateY(-50%) scale(1); }
-            50% { transform: translateY(-50%) scale(1.2); }
+            50% { transform: translateY(-50%) scale(1.3); }
             100% { transform: translateY(-50%) scale(1); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         .signature {
             text-align: right;
             font-style: italic;
-            margin-top: 20px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .invitation-card {
+                padding: 30px;
+            }
+            
+            .wishlist {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -320,20 +417,38 @@
         </div>
         
         <div class="section">
-            <h2>🎁 Пожелания для подарков</h2>
-            <p style="text-align: center;">Нажмите на варианты, которые вам нравятся:</p>
+            <h2>🎁 Забронируйте подарок</h2>
+            <p style="text-align: center;">Выберите и забронируйте подарок, чтобы избежать повторов:</p>
             <div class="wishlist">
-                <div class="wish-item">Книги</div>
-                <div class="wish-item">Вино</div>
-                <div class="wish-item">Сертификаты</div>
-                <div class="wish-item">Косметика</div>
-                <div class="wish-item">Настольные игры</div>
-                <div class="wish-item">Сюрприз</div>
+                <div class="wish-item" data-gift="Книги">
+                    <div class="gift-name">Книги</div>
+                    <div class="reserved-by"></div>
+                </div>
+                <div class="wish-item" data-gift="Вино">
+                    <div class="gift-name">Вино</div>
+                    <div class="reserved-by"></div>
+                </div>
+                <div class="wish-item" data-gift="Сертификаты">
+                    <div class="gift-name">Сертификаты</div>
+                    <div class="reserved-by"></div>
+                </div>
+                <div class="wish-item" data-gift="Косметика">
+                    <div class="gift-name">Косметика</div>
+                    <div class="reserved-by"></div>
+                </div>
+                <div class="wish-item" data-gift="Настольные игры">
+                    <div class="gift-name">Настольные игры</div>
+                    <div class="reserved-by"></div>
+                </div>
+                <div class="wish-item" data-gift="Сюрприз">
+                    <div class="gift-name">Сюрприз</div>
+                    <div class="reserved-by"></div>
+                </div>
             </div>
         </div>
         
         <div class="section">
-            <h2>🍽️ Предпочтения</h2>
+            <h2>🍽️ Подтвердите участие</h2>
             <form id="rsvp-form">
                 <div class="form-group">
                     <label for="name">Ваше имя</label>
@@ -362,84 +477,121 @@
     </div>
     
     <script>
-        // Создаем летающие сердечки
+        // Создаем большие летающие сердечки
         function createHearts() {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '❤';
             
-            // Случайный цвет
-            const colors = ['#FF6B8B', '#FFBE0B', '#FF8E3C', '#A78BFA', '#4ECDC4'];
+            // Случайные параметры
+            const colors = ['#FFB7C5', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomSize = Math.floor(Math.random() * 30) + 30; // 30-60px
+            const duration = Math.floor(Math.random() * 15) + 15; // 15-30s
             
-            // Случайная позиция
-            const randomLeft = Math.random() * 100;
-            
-            // Случайный размер
-            const randomSize = Math.random() * 20 + 15;
-            
-            heart.style.left = `${randomLeft}%`;
             heart.style.color = randomColor;
             heart.style.fontSize = `${randomSize}px`;
-            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            heart.style.left = `${Math.random() * 20 - 10}%`; // Начинать немного за пределами экрана
+            heart.style.animationDuration = `${duration}s`;
             
-            // Обработчик клика для фейерверка
+            // Случайная задержка анимации
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            
+            // Обработчик для фейерверка
             heart.addEventListener('mouseover', function() {
-                createFirework(randomLeft * window.innerWidth / 100, 
-                              parseFloat(getComputedStyle(heart).top));
+                createFirework(
+                    event.clientX, 
+                    event.clientY,
+                    randomColor
+                );
                 heart.remove();
             });
             
             document.body.appendChild(heart);
             
-            // Удаляем сердечко после анимации
+            // Удаляем сердечко после завершения анимации
             setTimeout(() => {
                 if (heart.parentNode) {
                     heart.remove();
                 }
-            }, 8000);
+            }, duration * 1000);
         }
         
-        // Создаем эффект фейерверка
-        function createFirework(x, y) {
-            const colors = ['#FF6B8B', '#FFBE0B', '#FF8E3C', '#A78BFA', '#4ECDC4'];
+        // Создаем фейерверк
+        function createFirework(x, y, color) {
+            const particles = 25;
+            const colors = color ? [color] : ['#FFB7C5', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'];
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < particles; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
                 // Случайный цвет
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const particleColor = colors[Math.floor(Math.random() * colors.length)];
                 
-                // Случайное направление
+                // Случайное направление и расстояние
                 const angle = Math.random() * Math.PI * 2;
                 const distance = Math.random() * 100 + 50;
                 const tx = Math.cos(angle) * distance;
                 const ty = Math.sin(angle) * distance;
                 
+                // Случайный размер
+                const size = Math.random() * 8 + 4;
+                
                 particle.style.left = `${x}px`;
                 particle.style.top = `${y}px`;
-                particle.style.background = randomColor;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.background = particleColor;
                 particle.style.setProperty('--tx', `${tx}px`);
                 particle.style.setProperty('--ty', `${ty}px`);
-                particle.style.animationDelay = `${Math.random() * 0.2}s`;
+                particle.style.animationDuration = `${Math.random() * 0.5 + 0.7}s`;
                 
                 document.body.appendChild(particle);
                 
                 // Удаляем частицу после анимации
                 setTimeout(() => {
                     particle.remove();
-                }, 1000);
+                }, 1200);
             }
         }
         
-        // Создаем сердечки каждые 0.5 секунды
-        setInterval(createHearts, 500);
+        // Запускаем создание сердечек каждые 0.8 секунды
+        setInterval(createHearts, 800);
         
-        // Обработка вишлиста
-        document.querySelectorAll('.wish-item').forEach(item => {
+        // И сразу создаем несколько сердечек
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createHearts, i * 300);
+        }
+        
+        // Обработка вишлиста с бронированием
+        let selectedGift = null;
+        const wishItems = document.querySelectorAll('.wish-item');
+        
+        wishItems.forEach(item => {
             item.addEventListener('click', function() {
-                this.classList.toggle('selected');
+                const giftName = this.getAttribute('data-gift');
+                
+                // Если подарок уже выбран, отменяем выбор
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    this.querySelector('.reserved-by').textContent = '';
+                    selectedGift = null;
+                    return;
+                }
+                
+                // Снимаем выделение с других подарков
+                wishItems.forEach(i => {
+                    i.classList.remove('selected');
+                    i.querySelector('.reserved-by').textContent = '';
+                });
+                
+                // Выделяем текущий подарок
+                this.classList.add('selected');
+                selectedGift = giftName;
+                
+                // Временно показываем, что подарок выбран (в реальном приложении здесь было бы имя гостя)
+                this.querySelector('.reserved-by').textContent = 'Вы выбрали этот подарок';
             });
         });
         
@@ -447,16 +599,26 @@
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const name = document.getElementById('name').value;
+            
             // Создаем фейерверк при подтверждении
-            createFirework(window.innerWidth / 2, window.innerHeight / 2);
+            createFirework(
+                window.innerWidth / 2, 
+                window.innerHeight / 2,
+                '#FFB7C5'
+            );
             
-            alert('Ура! Жду тебя на празднике! ❤️');
+            // Обновляем информацию о бронировании подарка
+            if (selectedGift) {
+                document.querySelectorAll('.wish-item').forEach(item => {
+                    if (item.classList.contains('selected')) {
+                        item.querySelector('.reserved-by').textContent = `Забронировано: ${name}`;
+                    }
+                });
+            }
+            
+            alert(`${name}, ура! Жду тебя на празднике! ❤️`);
             this.reset();
-            
-            // Сбрасываем выбор подарков
-            document.querySelectorAll('.wish-item').forEach(item => {
-                item.classList.remove('selected');
-            });
         });
     </script>
 </body>
