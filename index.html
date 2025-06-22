@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation | Mon Anniversaire</title>
+    <title>Приглашение на День Рождения</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-            --gold: #c0a062;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --accent: #E8C8A0;
+            --gray: #F5F5F5;
+            --text: #333333;
         }
         
         * {
@@ -19,253 +23,407 @@
         }
         
         body {
-            font-family: 'EB Garamond', serif;
-            color: var(--black);
-            background-color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            padding: 40px 0;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border-bottom: 1px solid var(--black);
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .header-title {
-            font-size: 2.5rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            z-index: -1;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 20px;
+            color: var(--dark);
         }
         
-        .header-date {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 40px;
         }
         
-        /* Main content */
-        .main-content {
+        .hero-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-date::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 80px 0;
         }
         
-        .invitation-text {
-            max-width: 800px;
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 1.3rem;
-            line-height: 1.8;
-        }
-        
-        .details {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 900px;
-            margin-bottom: 80px;
-        }
-        
-        .detail-block {
-            flex: 1;
-            padding: 0 30px;
-            text-align: center;
-        }
-        
-        .detail-title {
-            font-size: 1.1rem;
+        .scroll-text {
+            font-size: 0.8rem;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
         
-        .detail-content {
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: var(--dark);
+            animation: scrollAnimation 2s infinite;
+        }
+        
+        @keyframes scrollAnimation {
+            0% { height: 50px; opacity: 1; }
+            100% { height: 0; opacity: 0; }
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        /* About Section */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        /* Details Section */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .detail-card {
+            background: var(--gray);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .detail-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .detail-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .detail-text {
             font-size: 1rem;
             line-height: 1.6;
         }
         
         /* RSVP Section */
         .rsvp-section {
-            width: 100%;
-            max-width: 600px;
-            padding: 60px;
-            background-color: var(--gray);
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .rsvp-title {
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+            background: var(--gray);
+            padding: 80px 20px;
         }
         
         .rsvp-form {
-            display: flex;
-            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 20px;
         }
         
         .form-group {
             display: flex;
             flex-direction: column;
-            text-align: left;
         }
         
         label {
             margin-bottom: 8px;
             font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-weight: 500;
         }
         
-        input, select {
-            padding: 12px;
-            border: 1px solid var(--black);
-            background-color: var(--white);
+        input, select, textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
             font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
         }
         
         .submit-btn {
-            padding: 15px 30px;
-            background-color: var(--black);
-            color: var(--white);
+            padding: 16px 32px;
+            background: var(--dark);
+            color: var(--light);
             border: none;
-            cursor: pointer;
             font-family: inherit;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
             transition: all 0.3s;
+            margin-top: 20px;
         }
         
         .submit-btn:hover {
-            background-color: var(--gold);
+            background: var(--accent);
+            color: var(--dark);
         }
         
         /* Footer */
         footer {
-            padding: 40px 0;
+            background: var(--dark);
+            color: var(--light);
+            padding: 40px 20px;
             text-align: center;
-            border-top: 1px solid var(--black);
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
             font-size: 0.9rem;
-            letter-spacing: 1px;
+            line-height: 1.6;
         }
         
         @media (max-width: 768px) {
-            .details {
-                flex-direction: column;
-                gap: 40px;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .detail-block {
-                padding: 0;
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
             
-            .rsvp-section {
-                padding: 40px 20px;
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="header-title">Mon Anniversaire</h1>
-            <p class="header-date">12 Juillet 2023 | 17:00</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Дорогие мои, любимые друзья!</h1>
+        <p class="hero-subtitle">Приглашаю вас отпраздновать мой День Рождения в теплой компании</p>
+        <div class="hero-date">12 июля 2023 | 17:00</div>
+        
+        <div class="scroll-down">
+            <span class="scroll-text">Листайте вниз</span>
+            <div class="scroll-line"></div>
         </div>
-    </header>
+    </section>
     
-    <main class="main-content">
-        <div class="container">
-            <div class="invitation-text">
-                <p>Chers amis,</p>
-                <p>Je suis ravie de vous inviter à célébrer mon anniversaire le 12 juillet à partir de 17h.</p>
-                <p>Ce sera l'occasion de partager un moment convivial autour d'un verre et de bonne musique.</p>
-                <p>Votre présence sera mon plus beau cadeau.</p>
+    <!-- About Section -->
+    <section class="section">
+        <h2 class="section-title">О празднике</h2>
+        <p class="about-text">
+            Этот день я хочу провести в кругу самых близких людей. Мы будем наслаждаться хорошей музыкой, вкусной едой и отличной компанией. 
+            Ваше присутствие станет для меня самым ценным подарком!
+        </p>
+    </section>
+    
+    <!-- Details Section -->
+    <section class="section">
+        <h2 class="section-title">Детали</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="detail-icon">📍</div>
+                <h3 class="detail-title">Место проведения</h3>
+                <p class="detail-text">
+                    Москва, ул. Льва Толстого, 16<br>
+                    Видовая крыша, вход через главный вход<br>
+                    Скажите, что вы к имениннице
+                </p>
             </div>
             
-            <div class="details">
-                <div class="detail-block">
-                    <h3 class="detail-title">Lieu</h3>
-                    <p class="detail-content">
-                        Toit-terrasse Yandex<br>
-                        16 rue Léon Tolstoï<br>
-                        Moscou
-                    </p>
-                </div>
-                
-                <div class="detail-block">
-                    <h3 class="detail-title">Cadeaux</h3>
-                    <p class="detail-content">
-                        Votre présence suffit<br>
-                        Mais si vous insistez :<br>
-                        Vin, livres ou cosmétiques
-                    </p>
-                </div>
-                
-                <div class="detail-block">
-                    <h3 class="detail-title">Dress Code</h3>
-                    <p class="detail-content">
-                        Chic décontracté<br>
-                        Couleurs vives encouragées<br>
-                        Chaussures confortables
-                    </p>
-                </div>
+            <div class="detail-card">
+                <div class="detail-icon">🎁</div>
+                <h3 class="detail-title">Подарки</h3>
+                <p class="detail-text">
+                    Ваше присутствие - лучший подарок!<br>
+                    Если хотите сделать сюрприз:<br>
+                    Книги, вино или косметика
+                </p>
             </div>
             
-            <div class="rsvp-section">
-                <h2 class="rsvp-title">Confirmez votre présence</h2>
-                <form class="rsvp-form">
-                    <div class="form-group">
-                        <label for="name">Nom complet</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="guests">Nombre de personnes</label>
-                        <input type="number" id="guests" min="1" value="1" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="alcohol">Préférences alcool</label>
-                        <select id="alcohol" required>
-                            <option value="">Sélectionnez</option>
-                            <option value="vin">Vin/Champagne</option>
-                            <option value="alcool_fort">Alcool fort</option>
-                            <option value="biere">Bière/Cidre</option>
-                            <option value="non">Je ne bois pas</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Je confirme</button>
-                </form>
+            <div class="detail-card">
+                <div class="detail-icon">👗</div>
+                <h3 class="detail-title">Дресс-код</h3>
+                <p class="detail-text">
+                    Вечерний коктейль<br>
+                    Яркие акценты приветствуются<br>
+                    Удобная обувь для танцев
+                </p>
             </div>
         </div>
-    </main>
+    </section>
     
+    <!-- RSVP Section -->
+    <section class="rsvp-section">
+        <h2 class="section-title">Подтвердите участие</h2>
+        <form class="rsvp-form">
+            <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="guests">Количество гостей</label>
+                <input type="number" id="guests" min="1" value="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="alcohol">Предпочтения по напиткам</label>
+                <select id="alcohol" required>
+                    <option value="">Выберите вариант</option>
+                    <option value="wine">Вино/шампанское</option>
+                    <option value="strong">Крепкий алкоголь</option>
+                    <option value="beer">Пиво/сидр</option>
+                    <option value="none">Не пью алкоголь</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Ваши пожелания</label>
+                <textarea id="message"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Я приду!</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>Avec tout mon amour, la fêtée</p>
-        </div>
+        <p class="footer-text">
+            С нетерпением жду встречи!<br>
+            Для вопросов: +7 (123) 456-78-90
+        </p>
     </footer>
     
     <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission
         document.querySelector('.rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Merci pour votre confirmation ! Nous avons hâte de vous voir.');
+            alert('Спасибо за подтверждение! Жду вас на празднике!');
             this.reset();
         });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.detail-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animation
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.detail-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+            });
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
