@@ -3,446 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оранжевая Вечеринка | День Рождения</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Приглашение на День Рождения</title>
     <style>
-        :root {
-            --orange: #FF6B35;
-            --dark-orange: #E15634;
-            --light-orange: #FFB563;
-            --cream: #F7F7F2;
-            --dark: #1E1E24;
-            --gray: #6D6D6D;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
         
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Montserrat', sans-serif;
-            color: var(--dark);
-            background-color: var(--cream);
-            line-height: 1.6;
+            color: white;
             overflow-x: hidden;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            color: white;
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        .hero-date {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 60px;
-            color: var(--light-orange);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        /* Scroll Indicator */
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .scroll-text {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            color: white;
-        }
-        
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            background: white;
-            animation: scrollAnimation 2s infinite;
-        }
-        
-        @keyframes scrollAnimation {
-            0% { height: 50px; opacity: 1; }
-            100% { height: 0; opacity: 0; }
-        }
-        
-        /* Content Sections */
-        .section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            text-align: center;
-            color: var(--orange);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--orange);
-        }
-        
-        /* About Section */
-        .about-text {
+
+        .container {
             max-width: 800px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
             font-size: 1.1rem;
-            line-height: 1.8;
-            text-align: center;
-        }
-        
-        /* Party Image */
-        .party-image {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 0 auto 60px;
-            background: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        /* Details Section */
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .detail-card {
-            background: white;
-            padding: 40px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .detail-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .detail-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--orange);
-        }
-        
-        .detail-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .detail-text {
-            font-size: 1rem;
             line-height: 1.6;
-            color: var(--gray);
+            margin-bottom: 15px;
         }
-        
-        /* Map Section */
-        .map-container {
-            width: 100%;
-            height: 400px;
-            margin: 60px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+
+        ul {
+            padding-left: 20px;
         }
-        
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+
+        li {
+            margin-bottom: 10px;
         }
-        
-        /* Wishlist Section */
-        .wishlist {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 60px 0;
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff5e62;
+            transform: rotate(45deg);
+            cursor: pointer;
+            animation: float 5s ease-in-out infinite;
+            z-index: 0;
         }
-        
-        .wish-item {
-            background: white;
-            border: 2px solid var(--light-orange);
-            padding: 25px;
-            border-radius: 8px;
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: #ff5e62;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(45deg) translateY(0); }
+            50% { transform: rotate(45deg) translateY(-20px); }
+        }
+
+        .heart:hover {
+            animation: explode 0.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: rotate(45deg) scale(1); opacity: 1; }
+            100% { transform: rotate(45deg) scale(3); opacity: 0; }
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px;
             text-align: center;
-            transition: all 0.3s;
+            background: linear-gradient(45deg, #ff5e62, #ff9966);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
             position: relative;
             overflow: hidden;
         }
-        
-        .wish-item:hover {
-            border-color: var(--orange);
-        }
-        
-        .wish-item.reserved {
-            border-color: var(--gray);
-            background-color: #f5f5f5;
-        }
-        
-        .wish-item.reserved::after {
-            content: "Забронировано";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 8px;
-            background: var(--gray);
-            color: white;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-        
-        .wish-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        
-        .wish-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 15px;
-            background: var(--orange);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .wish-link:hover {
-            background: var(--dark-orange);
-            transform: translateY(-2px);
-        }
-        
-        /* RSVP Section */
-        .rsvp-section {
-            background: white;
-            padding: 80px 20px;
-            border-radius: 8px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .rsvp-form {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            background: var(--cream);
-            padding: 10px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .checkbox-label:hover {
-            background: var(--light-orange);
-            color: white;
-        }
-        
-        .checkbox-input {
-            margin-right: 8px;
-        }
-        
-        input[type="text"],
-        textarea {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            padding: 16px 32px;
-            background: var(--orange);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            justify-self: center;
-            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
-        }
-        
-        .submit-btn:hover {
-            background: var(--dark-orange);
+
+        .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255,107,53,0.4);
+            box-shadow: 0 8px 20px rgba(255, 94, 98, 0.6);
         }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn:after {
+            content: '❤️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover:after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .wishlist, .poll {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        h2 {
             color: white;
-            padding: 60px 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .wishlist-item {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .wishlist-item:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .poll-option {
+            margin: 10px 0;
+        }
+
+        .address {
+            font-weight: 600;
+            font-size: 1.2rem;
             text-align: center;
-            margin-top: 100px;
-        }
-        
-        .footer-text {
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section {
-                padding: 60px 20px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .party-image {
-                height: 250px;
-            }
-            
-            .map-container {
-                height: 300px;
-            }
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="hero-title">Оранжевая Вечеринка</h1>
-        <p class="hero-subtitle">Приглашаю вас на мой День Рождения в ярких оранжевых тонах!</p>
-        <div class="hero-date">12 июля 2023 | 17:00</div>
-        
-        <div class="scroll-down">
-            <span class="scroll-text">Листайте вниз</span>
-            <div class="scroll-line"></div>
+    <div class="container">
+        <header>
+            <h1>Приглашаю на свой День Рождения!</h1>
+        </header>
+
+        <div class="content">
+            <p>Дорогие мои, любимые друзья!</p>
+            
+            <p>Если вы читаете это, значит, вы прошли мой жёсткий отбор (шутка). 12 числа в 17:00 я буду отмечать свой 29й День Рождения!</p>
+            
+            <p>Почему вам стоит прийти?</p>
+            <ul>
+                <li>✔ Вы посетите сердце Яндекса — прекрасную видовую крышу (Коллегам из Яндекса сердечный привет)</li>
+                <li>✔ Бесплатная еда! (Ну, для вас бесплатная. Для меня — дорогое удовольствие).</li>
+                <li>✔ Алкоголь! (Если не допьёте — заберёте с собой, мне потом на работу).</li>
+                <li>✔ Конкурсы! (Главный приз — моя вечная благодарность. Ну или что-то из холодильника).</li>
+                <li>✔ Я! (Да-да, тот самый человек, без которого ваш life такой скучный).</li>
+            </ul>
+            
+            <p>Важно:</p>
+            <ul>
+                <li>🔹 Без подарков можно, но стыдно.</li>
+                <li>🔹 Без вас — нельзя, иначе зачем это все?</li>
+                <li>🔸 Опоздания приветствуются, но только если принесёте вкусняшки.</li>
+            </ul>
+            
+            <p>Подтвердите своё присутствие, иначе я обижусь и буду грустить в углу с тортом.</p>
+            
+            <p>P.S. Если не придёте — я всё равно вас люблю. Но чуть-чуть меньше. 😏</p>
+            
+            <p>Ваша именинница 🎂✨</p>
         </div>
-    </section>
-    
-    <!-- About Section -->
-    <section class="section">
-        <h2 class="section-title">О вечеринке</h2>
-        <p class="about-text">
-            Приготовьтесь к самому яркому событию лета! В этот день все будет в оранжевых тонах: 
-            от декора до нарядов. Жду вас на празднике с отличной музыкой, вкусными угощениями и прекрасной компанией.
-        </p>
-        
-        <div class="party-image"></div>
-    </section>
-    
-    <!-- Details Section -->
-    <section class="section">
-        <h2 class="section-title">Детали</h2>
-        <div class="details-grid">
-            <div class="detail-card">
-                <div class="detail-icon">📍</div>
-                <h3 class="detail-title">Место проведения</h3>
-                <p class="detail-text">
-                    Москва, ул. Льва Толстого, 16<br>
-                    Видовая крыша с панорамным видом<br>
-                    Вход по списку гостей
-                </p>
+
+        <div class="address">
+            Москва, ул. Льва Толстого, 16, подъезд 1
+        </div>
+
+        <div class="section">
+            <h2>Вишлист</h2>
+            <div class="wishlist">
+                <p>Если хотите сделать мне подарок, вот несколько идей:</p>
+                <div class="wishlist-item" onclick="selectGift(this)">Книга</div>
+                <div class="wishlist-item" onclick="selectGift(this)">Вино</div>
+                <div class="wishlist-item" onclick="selectGift(this)">Сертификат</div>
+                <div class="wishlist-item" onclick="selectGift(this)">Цветы</div>
+                <div class="wishlist-item" onclick="selectGift(this)">Сюрприз</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Опрос</h2>
+            <div class="poll">
+                <div class="poll-option">
+                    <input type="checkbox" id="alcohol1" name="alcohol">
+                    <label for="alcohol1">Я пью алкоголь</label>
+                </div>
+                <div class="poll-option">
+                    <input type="checkbox" id="alcohol2" name="alcohol">
+                    <label for="alcohol2">Я не пью алкоголь</label>
+                </div>
+                <div class="poll-option">
+                    <input type="checkbox" id="food1" name="food">
+                    <label for="food1">Я мясоед</label>
+                </div>
+                <div class="poll-option">
+                    <input type="checkbox" id="food2" name="food">
+                    <label for="food2">Я вегетарианец</label>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn" onclick="confirmAttendance()">Я приду</a>
+    </div>
+
+    <script>
+        // Создаем летающие сердечки
+        function createHearts() {
+            const container = document.querySelector('body');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
                 
-                <div class="map-container">
-                    <iframe src="https://yandex.ru/maps/-/CHcC4VpI"
+                // Рандомные позиции
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                
+                // Рандомные размеры
+                const size = Math.random() * 15 + 10;
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+                
+                // Рандомная анимация
+                heart.style.animationDuration = Math.random() * 5 + 3 + 's';
+                
+                // Добавляем обработчик взрыва
+                heart.addEventListener('click', function() {
+                    this.style.animation = 'explode 0.5s ease-out forwards';
+                    setTimeout(() => {
+                        this.remove();
+                        createHearts(1); // Создаем новое сердечко вместо удаленного
+                    }, 500);
+                });
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Функция выбора подарка
+        function selectGift(element) {
+            document.querySelectorAll('.wishlist-item').forEach(item => {
+                item.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+            });
+            element.style.backgroundColor = 'rgba(255, 94, 98, 0.6)';
+            alert('Спасибо за выбор подарка! ❤️');
+        }
+        
+        // Функция подтверждения присутствия
+        function confirmAttendance() {
+            const btn = document.querySelector('.btn');
+            btn.textContent = 'Ура! Жду тебя! ❤️';
+            btn.style.background = 'linear-gradient(45deg, #4CAF50, #8BC34A)';
+            alert('Спасибо, что приходишь! Будет весело! 🎉');
+        }
+        
+        // Инициализация при загрузке страницы
+        window.onload = function() {
+            createHearts();
+        };
+    </script>
+</body>
+</html>
