@@ -6,14 +6,15 @@
     <title>Приглашение на День Рождения</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff6b6b;
-            --secondary: #4ecdc4;
-            --dark: #292f36;
-            --light: #f7fff7;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --primary: #FF6B8B;
+            --secondary: #4ECDC4;
+            --accent: #FFBE0B;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
         * {
@@ -25,28 +26,23 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--dark);
-            background-color: #f9f9f9;
+            background-color: #FFF5F5;
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        /* Анимированная подложка */
-        .bg-animation {
+        .bg-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,107,139,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(78,205,196,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 30% 50%, rgba(255,190,11,0.1) 0%, transparent 25%);
+            opacity: 0.6;
         }
         
         .container {
@@ -57,35 +53,53 @@
         
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             animation: fadeIn 1s ease;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
         }
         
         h1 {
-            font-size: 2.8rem;
-            font-weight: 300;
-            margin-bottom: 15px;
-            color: var(--dark);
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         .date {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin: 20px 0;
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 30px;
             display: inline-block;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 5px;
+            padding: 8px 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .invitation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .invitation-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
         }
         
         .invitation-text {
-            text-align: left;
-            margin: 25px 0;
             font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
         
         .invitation-text p {
@@ -97,130 +111,195 @@
             font-weight: 600;
         }
         
-        .emoji-list {
-            list-style-type: none;
-            margin: 20px 0;
-        }
-        
-        .emoji-list li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .emoji-list li:before {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        
         .section {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
+            background: white;
+            border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            animation: slideUp 0.8s ease;
+            position: relative;
         }
         
-        /* Остальные стили остаются без изменений */
-        /* ... */
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .location {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,107,139,0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .wishlist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0;
+            justify-content: center;
+        }
+        
+        .wish-item {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .wish-item:hover, .wish-item.selected {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,107,139,0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,107,139,0.2);
+        }
+        
+        .heart-btn {
+            display: block;
+            width: 200px;
+            height: 60px;
+            margin: 30px auto 0;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255,107,139,0.4);
+        }
+        
+        .heart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,107,139,0.5);
+        }
+        
+        .heart-btn:before {
+            content: "❤";
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            opacity: 0;
+            z-index: 999;
+            animation: confetti 3s ease-out;
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
-    <div class="container">
-        <header>
-            <h1>Дорогие мои, любимые друзья!</h1>
-            
-            <div class="invitation-text">
-                <p>Если вы читаете это, значит, вы прошли мой жёсткий отбор (ну или просто случайно открыли сообщение).</p>
-                
-                <div class="date">12 июля • 17:00</div>
-                
-                <p>Я буду отмечать свой <span class="highlight">29-й День Рождения!</span></p>
-                
-                <h3>Почему вам стоит прийти?</h3>
-                <ul class="emoji-list">
-                    <li>✔ Вы посетите сердце Яндекса — прекрасную видовую крышу <small>(Коллегам из Яндекса сердечный привет)</small></li>
-                    <li>✔ Бесплатная еда! <small>(Ну, для вас бесплатная. Для меня — дорогое удовольствие)</small></li>
-                    <li>✔ Алкоголь! <small>(Если не допьёте — заберёте с собой, мне потом на работу)</small></li>
-                    <li>✔ Конкурсы! <small>(Главный приз — моя вечная благодарность. Ну или что-то из холодильника)</small></li>
-                    <li>✔ Я! <small>(Да-да, тот самый человек, без которого ваш life такой скучный)</small></li>
-                </ul>
-                
-                <h3>Важно:</h3>
-                <ul class="emoji-list">
-                    <li>🔹 Без подарков можно, но стыдно.</li>
-                    <li>🔹 Без вас — нельзя, иначе зачем это все?</li>
-                    <li>🔸 Опоздания приветствуются, но только если принесёте вкусняшки.</li>
-                </ul>
-                
-                <p>Подтвердите своё присутствие, иначе я обижусь и буду грустить в углу с тортом.</p>
-                
-                <p><em>P.S. Если не придёте — я всё равно вас люблю. Но чуть-чуть меньше. 😏</em></p>
-                
-                <p style="text-align: right; margin-top: 20px;">Ваша именинница 🎂✨</p>
-            </div>
-        </header>
+    <div class="bg-pattern"></div>
     
     <div class="container">
         <header>
             <h1>Приглашаю на День Рождения</h1>
-            <div class="date">28 июля 2023 • 18:00</div>
+            <div class="date">12 июля в 17:00</div>
         </header>
         
-        <div class="section" style="animation-delay: 0.1s;">
-            <h2>📍 Место проведения</h2>
-            <p>Мы будем праздновать в уютном лофте в центре города.</p>
-            <p><strong>Адрес:</strong> г. Москва, ул. Праздничная, д. 28, лофт "Праздник"</p>
-            <p>Вход через арку, 3 этаж. Будет указатель.</p>
+        <div class="invitation-card">
+            <div class="invitation-text">
+                <p>Дорогие друзья!</p>
+                <p>Приглашаю вас отпраздновать мой День Рождения в кругу самых близких и любимых людей!</p>
+                <p>Будет вкусная еда, хорошая музыка и отличная компания ❤️</p>
+            </div>
         </div>
         
-        <div class="section" style="animation-delay: 0.2s;">
+        <div class="section">
+            <h2>📍 Место проведения</h2>
+            <div class="location">
+                Москва, ул. Льва Толстого, 16, подъезд 1
+            </div>
+            <p style="text-align: center;">Вход по списку, скажите что к имениннице</p>
+        </div>
+        
+        <div class="section">
             <h2>🎁 Пожелания для подарков</h2>
-            <p>Нажмите на варианты, которые вам нравятся:</p>
+            <p style="text-align: center;">Нажмите на варианты, которые вам нравятся:</p>
             <div class="wishlist">
                 <div class="wish-item">Книги</div>
+                <div class="wish-item">Вино</div>
+                <div class="wish-item">Сертификаты</div>
+                <div class="wish-item">Косметика</div>
                 <div class="wish-item">Настольные игры</div>
-                <div class="wish-item">Подарочные сертификаты</div>
-                <div class="wish-item">Косметика для ухода</div>
-                <div class="wish-item">Необычный чай/кофе</div>
-                <div class="wish-item">Что-то handmade</div>
                 <div class="wish-item">Сюрприз</div>
             </div>
         </div>
         
-        <div class="section" style="animation-delay: 0.3s;">
-            <h2>📜 Правила вечеринки</h2>
-            <ul style="list-style-type: none;">
-                <li>🎉 Приходите в хорошем настроении</li>
-                <li>👗 Дресс-код: яркие цвета</li>
-                <li>👠 Возьмите сменную обувь</li>
-                <li>🍰 Если хотите принести угощение — согласуйте заранее</li>
-                <li>📸 Будет фотозона — подготовьте образы</li>
-                <li>⏰ Завершение в 23:00</li>
-            </ul>
-        </div>
-        
-        <div class="section" style="animation-delay: 0.4s;">
-            <h2>📝 Подтвердите участие</h2>
+        <div class="section">
+            <h2>🍽️ Предпочтения</h2>
             <form id="rsvp-form">
                 <div class="form-group">
                     <label for="name">Ваше имя</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" required placeholder="Как к вам обращаться?">
                 </div>
                 
                 <div class="form-group">
-                    <label for="guests">Количество гостей</label>
-                    <input type="number" id="guests" min="1" value="1" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alcohol">Предпочтения по напиткам</label>
+                    <label for="alcohol">Алкогольные предпочтения</label>
                     <select id="alcohol" required>
                         <option value="">Выберите вариант</option>
                         <option value="wine">Вино/шампанское</option>
@@ -231,36 +310,73 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Ваши пожелания</label>
-                    <textarea id="message" rows="3"></textarea>
+                    <label for="food">Пищевые предпочтения</label>
+                    <input type="text" id="food" placeholder="Вегетарианец, аллергия и т.д.">
                 </div>
                 
-                <button type="submit">Я приду!</button>
+                <button type="submit" class="heart-btn">Я приду</button>
             </form>
         </div>
     </div>
     
     <script>
-        // Обработка кликов по вишлисту
+        // Обработка вишлиста
         document.querySelectorAll('.wish-item').forEach(item => {
             item.addEventListener('click', function() {
-                this.classList.toggle('active');
-                if(this.classList.contains('active')) {
-                    this.style.background = 'var(--primary)';
-                    this.style.color = 'white';
-                } else {
-                    this.style.background = 'white';
-                    this.style.color = 'inherit';
-                }
+                this.classList.toggle('selected');
             });
         });
         
         // Обработка формы
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Спасибо за подтверждение! Жду вас на празднике!');
+            
+            // Создаем конфетти
+            for(let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            
+            alert('Ура! Жду тебя на празднике! ❤️');
             this.reset();
+            
+            // Сбрасываем выбор подарков
+            document.querySelectorAll('.wish-item').forEach(item => {
+                item.classList.remove('selected');
+            });
         });
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Случайный цвет
+            const colors = ['#FF6B8B', '#4ECDC4', '#FFBE0B', '#A78BFA'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Случайная позиция
+            const randomLeft = Math.random() * 100;
+            
+            // Случайный размер
+            const randomSize = Math.random() * 10 + 5;
+            
+            // Случайная форма
+            const shapes = ['circle', 'square'];
+            const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+            
+            confetti.style.left = `${randomLeft}%`;
+            confetti.style.top = '-10px';
+            confetti.style.width = `${randomSize}px`;
+            confetti.style.height = `${randomSize}px`;
+            confetti.style.background = randomColor;
+            confetti.style.borderRadius = randomShape === 'circle' ? '50%' : '0';
+            
+            document.body.appendChild(confetti);
+            
+            // Удаляем конфетти после анимации
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
     </script>
 </body>
 </html>
