@@ -6,15 +6,14 @@
     <title>Приглашение на День Рождения</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink: #FF9ECF;
-            --purple: #C77DFF;
-            --orange: #FF9E5E;
-            --yellow: #FFDE59;
-            --dark: #3A2E39;
-            --light: #FFF5F9;
+            --gold: #D4AF37;
+            --dark: #1A1A1A;
+            --light: #F5F5F5;
+            --gray: #333333;
+            --light-gray: #E5E5E5;
         }
         
         * {
@@ -24,184 +23,141 @@
         }
         
         body {
-            font-family: 'Comfortaa', cursive;
+            font-family: 'Montserrat', sans-serif;
             color: var(--dark);
-            background: linear-gradient(135deg, var(--pink), var(--purple), var(--orange), var(--yellow));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            line-height: 1.6;
+            background-color: var(--light);
+            line-height: 1.8;
             overflow-x: hidden;
             min-height: 100vh;
         }
         
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Анимированные элементы */
-        .animation-container {
+        /* Элегантный фон с текстурой */
+        .bg-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.03) 0%, transparent 30%),
+                var(--light);
             z-index: -1;
-            overflow: hidden;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 30px;
-            color: #FF3E6D;
-            animation: float linear infinite;
-            opacity: 0.8;
-            z-index: 1;
-        }
-        
-        .kitten {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20c10 0 20 10 20 20 0 10-10 20-20 20s-20-10-20-20c0-10 10-20 20-20z" fill="%23FF9ECF"/><circle cx="40" cy="35" r="5" fill="%233A2E39"/><circle cx="60" cy="35" r="5" fill="%233A2E39"/><path d="M45 50c2 5 10 5 10 0" stroke="%233A2E39" stroke-width="2" fill="none"/><path d="M30 25c-5-5-15-5-15 0" stroke="%23FF9ECF" stroke-width="4" fill="none"/><path d="M70 25c5-5 15-5 15 0" stroke="%23FF9ECF" stroke-width="4" fill="none"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: run linear infinite;
-            z-index: 2;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(0, -50px) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translate(calc(100vw - 100px), calc(100vh + 50px)) rotate(360deg); opacity: 0; }
-        }
-        
-        @keyframes run {
-            0% { transform: translateX(-100px); }
-            100% { transform: translateX(calc(100vw + 100px)); }
-        }
-        
-        /* Котенок с шампанским */
-        .final-kitten {
-            position: fixed;
-            width: 150px;
-            height: 150px;
-            bottom: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c15 0 30 15 30 30 0 15-15 30-30 30s-30-15-30-30c0-15 15-30 30-30z" fill="%23FF9ECF"/><circle cx="40" cy="45" r="7" fill="%233A2E39"/><circle cx="60" cy="45" r="7" fill="%233A2E39"/><path d="M45 65c3 7 15 7 15 0" stroke="%233A2E39" stroke-width="3" fill="none"/><path d="M30 35c-7-7-20-7-20 0" stroke="%23FF9ECF" stroke-width="6" fill="none"/><path d="M70 35c7-7 20-7 20 0" stroke="%23FF9ECF" stroke-width="6" fill="none"/><path d="M65 80l15 20" stroke="%23FFDE59" stroke-width="8" stroke-linecap="round"/><path d="M65 80l10-30" stroke="%23FF9E5E" stroke-width="6" stroke-linecap="round"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: 10;
-            transition: all 2s ease-in-out;
-            pointer-events: none;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px 120px;
-            position: relative;
-            z-index: 1;
+            padding: 60px 30px;
         }
         
+        /* Шапка */
         header {
             text-align: center;
-            margin-bottom: 50px;
-            animation: fadeIn 1s ease;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
         }
         
         h1 {
-            font-family: 'Pangolin', cursive;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
             font-size: 3.5rem;
             margin-bottom: 20px;
-            color: white;
-            text-shadow: 3px 3px 0 var(--purple), 
-                         6px 6px 0 rgba(0,0,0,0.1);
-            letter-spacing: 2px;
+            color: var(--dark);
+            letter-spacing: 1px;
         }
         
+        .date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        /* Карточка приглашения */
         .invitation-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255,255,255,0.3);
-            transform-style: preserve-3d;
+            background-color: white;
+            border-radius: 2px;
+            padding: 60px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--light-gray);
         }
         
         .invitation-card::before {
             content: "";
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--pink), var(--purple), var(--orange), var(--yellow));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0.3;
-            animation: borderPulse 8s infinite linear;
-        }
-        
-        @keyframes borderPulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 0.1; }
-            100% { opacity: 0.3; }
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gold);
         }
         
         .invitation-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
-            line-height: 1.8;
+            color: var(--gray);
+            font-weight: 300;
         }
         
         .invitation-text p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
-        .emoji-list {
+        /* Списки */
+        .elegant-list {
             list-style-type: none;
-            margin: 30px 0;
+            margin: 40px 0;
         }
         
-        .emoji-list li {
-            margin-bottom: 15px;
+        .elegant-list li {
+            margin-bottom: 20px;
             position: relative;
-            padding-left: 45px;
-            font-size: 1.1rem;
+            padding-left: 40px;
+            font-weight: 400;
         }
         
-        .emoji-list li:before {
+        .elegant-list li::before {
+            content: "•";
             position: absolute;
             left: 0;
             top: 0;
-            font-size: 1.5rem;
+            color: var(--gold);
+            font-size: 2rem;
+            line-height: 1;
         }
         
+        /* Секции */
         .section {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 40px;
+            background-color: white;
+            border-radius: 2px;
+            padding: 50px;
             margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+            border: 1px solid var(--light-gray);
         }
         
         h2 {
-            font-family: 'Pangolin', cursive;
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
             margin-bottom: 30px;
-            text-align: center;
-            color: var(--purple);
+            color: var(--dark);
+            font-weight: 500;
             position: relative;
             display: inline-block;
         }
@@ -211,23 +167,40 @@
             position: absolute;
             bottom: -10px;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pink), var(--yellow));
-            border-radius: 2px;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
         }
         
         .location {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin: 30px 0;
-            padding: 20px;
-            background: rgba(255, 222, 89, 0.3);
-            border-radius: 15px;
-            border-left: 5px solid var(--orange);
-            font-weight: bold;
+            padding: 25px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
         }
         
+        .location::before,
+        .location::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+        
+        .location::before {
+            left: 20%;
+        }
+        
+        .location::after {
+            right: 20%;
+        }
+        
+        /* Вишлист */
         .wishlist {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -237,128 +210,133 @@
         
         .wish-item {
             background: white;
-            border: 3px solid var(--pink);
-            padding: 20px;
-            border-radius: 20px;
+            border: 1px solid var(--light-gray);
+            padding: 25px;
+            border-radius: 2px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
             text-align: center;
-            font-weight: bold;
-            color: var(--purple);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-weight: 400;
+            position: relative;
+            overflow: hidden;
         }
         
         .wish-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: var(--purple);
+            border-color: var(--gold);
         }
         
         .wish-item.selected {
-            background: var(--pink);
-            color: white;
-            border-color: var(--purple);
+            border-color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.05);
         }
         
         .wish-item.selected::after {
-            content: "✓ Забронировано";
-            display: block;
-            margin-top: 10px;
-            font-weight: normal;
-            font-size: 0.9rem;
-            color: var(--dark);
+            content: "Забронировано";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px;
+            background: var(--gold);
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
         }
         
+        /* Форма */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         label {
             display: block;
             margin-bottom: 10px;
-            font-weight: bold;
-            color: var(--purple);
+            font-weight: 500;
+            color: var(--gray);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 18px;
-            border: 3px solid var(--pink);
-            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 2px;
             font-family: inherit;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s;
-            background: rgba(255,255,255,0.8);
+            background: white;
         }
         
         input:focus, select:focus, textarea:focus {
-            border-color: var(--purple);
+            border-color: var(--gold);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(199, 125, 255, 0.3);
         }
         
-        .heart-btn {
+        /* Кнопка */
+        .elegant-btn {
             display: block;
-            width: 250px;
-            height: 70px;
+            width: 220px;
+            height: 60px;
             margin: 50px auto 0;
-            background: linear-gradient(45deg, var(--pink), var(--purple));
-            color: white;
-            border: none;
-            border-radius: 70px;
-            font-family: 'Pangolin', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(199, 125, 255, 0.5);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
         }
         
-        .heart-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(199, 125, 255, 0.7);
-        }
-        
-        .heart-btn::before {
-            content: "❤";
-            position: absolute;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            animation: pulse 1.5s infinite;
+        .elegant-btn:hover {
+            background: var(--gold);
+            color: white;
         }
         
         .signature {
             text-align: right;
             font-style: italic;
             margin-top: 50px;
-            font-size: 1.3rem;
-            color: var(--purple);
+            font-size: 1.1rem;
+            color: var(--gray);
+            position: relative;
+            padding-right: 20px;
         }
         
+        .signature::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 10px;
+            height: 1px;
+            background: var(--gold);
+        }
+        
+        /* Анимации */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes pulse {
-            0% { transform: translateY(-50%) scale(1); }
-            50% { transform: translateY(-50%) scale(1.3); }
-            100% { transform: translateY(-50%) scale(1); }
-        }
-        
+        /* Адаптивность */
         @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
             h1 {
                 font-size: 2.5rem;
             }
             
             .invitation-card, .section {
-                padding: 30px;
+                padding: 40px;
             }
             
             .wishlist {
@@ -368,55 +346,45 @@
     </style>
 </head>
 <body>
-    <div class="animation-container" id="animation-container"></div>
-    <div class="final-kitten" id="final-kitten"></div>
+    <div class="bg-pattern"></div>
     
     <div class="container">
         <header>
             <h1>Дорогие мои, любимые друзья!</h1>
+            <div class="date">12 июля в 17:00</div>
         </header>
         
         <div class="invitation-card">
             <div class="invitation-text">
-                <p>Если вы читаете это, значит, вы прошли мой жёсткий отбор (шутка). 12 числа в 17:00 я буду отмечать свой 29й День Рождения!</p>
+                <p>Приглашаю вас разделить со мной радость моего Дня Рождения. Этот особенный день я хотела бы провести в кругу самых близких и дорогих мне людей.</p>
                 
-                <h3>Почему вам стоит прийти?</h3>
-                <ul class="emoji-list">
-                    <li>✔ Вы посетите сердце Яндекса — прекрасную видовую крышу (Коллегам из Яндекса сердечный привет)</li>
-                    <li>✔ Бесплатная еда! (Ну, для вас бесплатная. Для меня — дорогое удовольствие)</li>
-                    <li>✔ Алкоголь! (Если не допьёте — заберёте с собой, мне потом на работу)</li>
-                    <li>✔ Конкурсы! (Главный приз — моя вечная благодарность. Ну или что-то из холодильника)</li>
-                    <li>✔ Я! (Да-да, тот самый человек, без которого ваш life такой скучный)</li>
+                <p>12 июля в 17:00 мы соберемся, чтобы отпраздновать этот прекрасный повод в теплой и уютной атмосфере.</p>
+                
+                <ul class="elegant-list">
+                    <li>Вас ждет изысканное угощение и прекрасное шампанское</li>
+                    <li>Теплая атмосфера и хорошая музыка</li>
+                    <li>Возможность провести время в приятной компании</li>
                 </ul>
                 
-                <h3>Важно:</h3>
-                <ul class="emoji-list">
-                    <li>🔹 Без подарков можно, но стыдно</li>
-                    <li>🔹 Без вас — нельзя, иначе зачем это все?</li>
-                    <li>🔸 Опоздания приветствуются, но только если принесёте вкусняшки</li>
-                </ul>
-                
-                <p>Подтвердите своё присутствие, иначе я обижусь и буду грустить в углу с тортом.</p>
-                
-                <p>P.S. Если не придёте — я всё равно вас люблю. Но чуть-чуть меньше. 😏</p>
+                <p>Ваше присутствие станет для меня самым ценным подарком.</p>
                 
                 <div class="signature">
-                    Ваша именинница 🎂✨
+                    С любовью, именинница
                 </div>
             </div>
         </div>
         
         <div class="section">
-            <h2>📍 Место проведения</h2>
+            <h2>Место проведения</h2>
             <div class="location">
                 Москва, ул. Льва Толстого, 16, подъезд 1
             </div>
-            <p style="text-align: center; margin-top: 20px;">Вход по списку, скажите что к имениннице</p>
+            <p style="text-align: center; font-weight: 300;">Вход по предварительному списку</p>
         </div>
         
         <div class="section">
-            <h2>🎁 Забронируйте подарок</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Выберите и забронируйте подарок, чтобы избежать повторов:</p>
+            <h2>Пожелания для подарков</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-weight: 300;">Если вы хотите сделать мне подарок, вот несколько идей:</p>
             <div class="wishlist">
                 <div class="wish-item" data-gift="Книги">Книги</div>
                 <div class="wish-item" data-gift="Вино">Вино</div>
@@ -428,7 +396,7 @@
         </div>
         
         <div class="section">
-            <h2>🍽️ Подтвердите участие</h2>
+            <h2>Подтвердите участие</h2>
             <form id="rsvp-form">
                 <div class="form-group">
                     <label for="name">Ваше имя</label>
@@ -436,7 +404,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="alcohol">Алкогольные предпочтения</label>
+                    <label for="alcohol">Предпочтения по напиткам</label>
                     <select id="alcohol" required>
                         <option value="">Выберите вариант</option>
                         <option value="wine">Вино/шампанское</option>
@@ -451,79 +419,12 @@
                     <input type="text" id="food" placeholder="Вегетарианец, аллергия и т.д.">
                 </div>
                 
-                <button type="submit" class="heart-btn">Я приду!</button>
+                <button type="submit" class="elegant-btn">Подтвердить участие</button>
             </form>
         </div>
     </div>
     
     <script>
-        // Создаем летающие сердечки
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '❤';
-            
-            // Случайные параметры
-            const left = Math.random() * 100;
-            const duration = Math.random() * 15 + 10;
-            const delay = Math.random() * 5;
-            const size = Math.random() * 20 + 20;
-            
-            heart.style.left = `${left}%`;
-            heart.style.animationDuration = `${duration}s`;
-            heart.style.animationDelay = `${delay}s`;
-            heart.style.fontSize = `${size}px`;
-            
-            // Случайный цвет
-            const colors = ['#FF3E6D', '#FF85A2', '#FF9ECF', '#FFB7E4'];
-            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.getElementById('animation-container').appendChild(heart);
-            
-            // Удаляем сердечко после анимации
-            setTimeout(() => {
-                heart.remove();
-            }, (duration + delay) * 1000);
-        }
-        
-        // Создаем бегающих котят
-        function createKitten() {
-            const kitten = document.createElement('div');
-            kitten.className = 'kitten';
-            
-            // Случайные параметры
-            const top = Math.random() * 80 + 10;
-            const duration = Math.random() * 10 + 5;
-            const delay = Math.random() * 5;
-            const size = Math.random() * 40 + 60;
-            
-            kitten.style.top = `${top}%`;
-            kitten.style.animationDuration = `${duration}s`;
-            kitten.style.animationDelay = `${delay}s`;
-            kitten.style.width = `${size}px`;
-            kitten.style.height = `${size}px`;
-            
-            document.getElementById('animation-container').appendChild(kitten);
-            
-            // Удаляем котенка после анимации
-            setTimeout(() => {
-                kitten.remove();
-            }, (duration + delay) * 1000);
-        }
-        
-        // Запускаем создание сердечек и котят
-        setInterval(createHeart, 800);
-        setInterval(createKitten, 3000);
-        
-        // Сразу создаем несколько элементов
-        for (let i = 0; i < 15; i++) {
-            setTimeout(createHeart, i * 300);
-        }
-        
-        for (let i = 0; i < 3; i++) {
-            setTimeout(createKitten, i * 1000);
-        }
-        
         // Обработка вишлиста
         let selectedGift = null;
         document.querySelectorAll('.wish-item').forEach(item => {
@@ -551,32 +452,29 @@
             
             const name = document.getElementById('name').value;
             
-            // Показываем котенка с шампанским
-            const kitten = document.getElementById('final-kitten');
-            kitten.style.bottom = '50px';
-            
             // Обновляем информацию о бронировании
             if (selectedGift) {
                 document.querySelectorAll('.wish-item').forEach(item => {
                     if (item.classList.contains('selected')) {
-                        item.innerHTML = `${item.getAttribute('data-gift')} <span style="font-size:0.9em;font-weight:normal;">(забронировано: ${name})</span>`;
+                        item.innerHTML = `${item.getAttribute('data-gift')} <span style="font-size:0.8em;font-weight:300;">(забронировано: ${name})</span>`;
                     }
                 });
             }
             
-            // Создаем уведомление
+            // Показываем уведомление
             const notification = document.createElement('div');
-            notification.textContent = `Ура, ${name}! Жду тебя на празднике! 🎉`;
+            notification.textContent = `Спасибо, ${name}! Жду вас на празднике`;
             notification.style.position = 'fixed';
-            notification.style.bottom = '150px';
+            notification.style.bottom = '30px';
             notification.style.left = '50%';
             notification.style.transform = 'translateX(-50%)';
-            notification.style.backgroundColor = 'var(--purple)';
+            notification.style.backgroundColor = 'var(--gold)';
             notification.style.color = 'white';
             notification.style.padding = '15px 30px';
-            notification.style.borderRadius = '30px';
+            notification.style.borderRadius = '2px';
             notification.style.zIndex = '1000';
-            notification.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
+            notification.style.fontSize = '0.9rem';
+            notification.style.letterSpacing = '1px';
             notification.style.animation = 'fadeIn 0.5s';
             
             document.body.appendChild(notification);
