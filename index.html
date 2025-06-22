@@ -6,14 +6,15 @@
     <title>Приглашение на День Рождения</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Pangolin&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink: #FF9EB7;
-            --light-pink: #FFD6DE;
-            --rose: #FF85A2;
-            --white: #FFF9FB;
-            --gold: #FFD166;
+            --pink: #FF9ECF;
+            --purple: #C77DFF;
+            --orange: #FF9E5E;
+            --yellow: #FFDE59;
+            --dark: #3A2E39;
+            --light: #FFF5F9;
         }
         
         * {
@@ -23,15 +24,24 @@
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            color: #5E3A46;
-            background-color: var(--white);
+            font-family: 'Comfortaa', cursive;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--orange), var(--yellow));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
-        /* Анимированные падающие сердечки */
-        .hearts-container {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Анимированные элементы */
+        .animation-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -44,66 +54,85 @@
         
         .heart {
             position: absolute;
-            font-size: 24px;
-            color: var(--pink);
-            opacity: 0.7;
-            animation: falling linear infinite;
-            user-select: none;
+            font-size: 30px;
+            color: #FF3E6D;
+            animation: float linear infinite;
+            opacity: 0.8;
+            z-index: 1;
         }
         
-        @keyframes falling {
-            0% {
-                transform: translateY(-50px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(calc(100vh + 50px)) rotate(360deg);
-                opacity: 0;
-            }
+        .kitten {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20c10 0 20 10 20 20 0 10-10 20-20 20s-20-10-20-20c0-10 10-20 20-20z" fill="%23FF9ECF"/><circle cx="40" cy="35" r="5" fill="%233A2E39"/><circle cx="60" cy="35" r="5" fill="%233A2E39"/><path d="M45 50c2 5 10 5 10 0" stroke="%233A2E39" stroke-width="2" fill="none"/><path d="M30 25c-5-5-15-5-15 0" stroke="%23FF9ECF" stroke-width="4" fill="none"/><path d="M70 25c5-5 15-5 15 0" stroke="%23FF9ECF" stroke-width="4" fill="none"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: run linear infinite;
+            z-index: 2;
         }
         
-        /* Основные стили */
+        @keyframes float {
+            0% { transform: translate(0, -50px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translate(calc(100vw - 100px), calc(100vh + 50px)) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes run {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+        
+        /* Котенок с шампанским */
+        .final-kitten {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c15 0 30 15 30 30 0 15-15 30-30 30s-30-15-30-30c0-15 15-30 30-30z" fill="%23FF9ECF"/><circle cx="40" cy="45" r="7" fill="%233A2E39"/><circle cx="60" cy="45" r="7" fill="%233A2E39"/><path d="M45 65c3 7 15 7 15 0" stroke="%233A2E39" stroke-width="3" fill="none"/><path d="M30 35c-7-7-20-7-20 0" stroke="%23FF9ECF" stroke-width="6" fill="none"/><path d="M70 35c7-7 20-7 20 0" stroke="%23FF9ECF" stroke-width="6" fill="none"/><path d="M65 80l15 20" stroke="%23FFDE59" stroke-width="8" stroke-linecap="round"/><path d="M65 80l10-30" stroke="%23FF9E5E" stroke-width="6" stroke-linecap="round"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10;
+            transition: all 2s ease-in-out;
+            pointer-events: none;
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px 120px;
             position: relative;
+            z-index: 1;
         }
         
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease;
         }
         
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: var(--rose);
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Pangolin', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 3px 3px 0 var(--purple), 
+                         6px 6px 0 rgba(0,0,0,0.1);
+            letter-spacing: 2px;
         }
         
-        .date {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: var(--rose);
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-        
-        /* Карточка приглашения */
         .invitation-card {
-            background-color: var(--light-pink);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 158, 183, 0.3);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
         }
@@ -111,217 +140,244 @@
         .invitation-card::before {
             content: "";
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px dashed var(--pink);
-            border-radius: 25px;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--pink), var(--purple), var(--orange), var(--yellow));
+            z-index: -1;
+            border-radius: inherit;
             opacity: 0.3;
-            pointer-events: none;
+            animation: borderPulse 8s infinite linear;
+        }
+        
+        @keyframes borderPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+            100% { opacity: 0.3; }
         }
         
         .invitation-text {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
         
         .invitation-text p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
-        /* Списки */
         .emoji-list {
             list-style-type: none;
-            margin: 20px 0;
+            margin: 30px 0;
         }
         
         .emoji-list li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             position: relative;
-            padding-left: 35px;
+            padding-left: 45px;
+            font-size: 1.1rem;
         }
         
         .emoji-list li:before {
             position: absolute;
             left: 0;
             top: 0;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
         
-        /* Секции */
         .section {
-            background-color: var(--light-pink);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 158, 183, 0.3);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
         }
         
         h2 {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Pangolin', cursive;
             font-size: 2.5rem;
-            color: var(--rose);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
+            color: var(--purple);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink), var(--yellow));
+            border-radius: 2px;
         }
         
         .location {
             text-align: center;
-            font-size: 1.3rem;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
-            border-left: 4px solid var(--rose);
+            font-size: 1.5rem;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 222, 89, 0.3);
+            border-radius: 15px;
+            border-left: 5px solid var(--orange);
+            font-weight: bold;
         }
         
-        /* Вишлист */
         .wishlist {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 25px 0;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
         }
         
         .wish-item {
-            background-color: white;
-            border: 2px solid var(--pink);
-            padding: 12px 25px;
-            border-radius: 30px;
+            background: white;
+            border: 3px solid var(--pink);
+            padding: 20px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            color: var(--pink);
-            font-weight: 600;
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--purple);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .wish-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--purple);
         }
         
         .wish-item.selected {
-            background-color: var(--pink);
+            background: var(--pink);
             color: white;
+            border-color: var(--purple);
         }
         
         .wish-item.selected::after {
             content: "✓ Забронировано";
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            color: var(--rose);
+            display: block;
+            margin-top: 10px;
             font-weight: normal;
-            white-space: nowrap;
+            font-size: 0.9rem;
+            color: var(--dark);
         }
         
-        /* Форма */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #5E3A46;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--purple);
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #FFC0CB;
-            border-radius: 12px;
+            padding: 18px;
+            border: 3px solid var(--pink);
+            border-radius: 15px;
             font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.8);
         }
         
         input:focus, select:focus, textarea:focus {
-            border-color: var(--rose);
+            border-color: var(--purple);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 158, 183, 0.3);
+            box-shadow: 0 0 0 4px rgba(199, 125, 255, 0.3);
         }
         
-        /* Кнопка */
         .heart-btn {
             display: block;
-            width: 200px;
-            height: 60px;
-            margin: 30px auto 0;
-            background-color: var(--rose);
+            width: 250px;
+            height: 70px;
+            margin: 50px auto 0;
+            background: linear-gradient(45deg, var(--pink), var(--purple));
             color: white;
             border: none;
-            border-radius: 60px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            border-radius: 70px;
+            font-family: 'Pangolin', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(255, 133, 162, 0.4);
+            box-shadow: 0 10px 30px rgba(199, 125, 255, 0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
         .heart-btn:hover {
-            background-color: #FF6B8B;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 133, 162, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(199, 125, 255, 0.7);
         }
         
         .heart-btn::before {
             content: "❤";
             position: absolute;
-            left: 25px;
+            left: 30px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
+            font-size: 2rem;
             animation: pulse 1.5s infinite;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 50px;
+            font-size: 1.3rem;
+            color: var(--purple);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
             0% { transform: translateY(-50%) scale(1); }
-            50% { transform: translateY(-50%) scale(1.2); }
+            50% { transform: translateY(-50%) scale(1.3); }
             100% { transform: translateY(-50%) scale(1); }
         }
         
-        /* Подпись */
-        .signature {
-            text-align: right;
-            font-style: italic;
-            margin-top: 20px;
-            color: var(--rose);
-            font-size: 1.1rem;
-        }
-        
-        /* Адаптивность */
         @media (max-width: 768px) {
             h1 {
-                font-size: 3rem;
-            }
-            
-            .date {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
             
             .invitation-card, .section {
-                padding: 25px;
+                padding: 30px;
+            }
+            
+            .wishlist {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hearts-container" id="hearts-container"></div>
+    <div class="animation-container" id="animation-container"></div>
+    <div class="final-kitten" id="final-kitten"></div>
     
     <div class="container">
         <header>
-            <h1>Приглашаю на День Рождения</h1>
-            <div class="date">12 июля в 17:00</div>
+            <h1>Дорогие мои, любимые друзья!</h1>
         </header>
         
         <div class="invitation-card">
             <div class="invitation-text">
-                <p>Дорогие мои, любимые друзья!</p>
                 <p>Если вы читаете это, значит, вы прошли мой жёсткий отбор (шутка). 12 числа в 17:00 я буду отмечать свой 29й День Рождения!</p>
                 
                 <h3>Почему вам стоит прийти?</h3>
@@ -355,12 +411,12 @@
             <div class="location">
                 Москва, ул. Льва Толстого, 16, подъезд 1
             </div>
-            <p style="text-align: center;">Вход по списку, скажите что к имениннице</p>
+            <p style="text-align: center; margin-top: 20px;">Вход по списку, скажите что к имениннице</p>
         </div>
         
         <div class="section">
             <h2>🎁 Забронируйте подарок</h2>
-            <p style="text-align: center;">Выберите и забронируйте подарок, чтобы избежать повторов:</p>
+            <p style="text-align: center; margin-bottom: 30px;">Выберите и забронируйте подарок, чтобы избежать повторов:</p>
             <div class="wishlist">
                 <div class="wish-item" data-gift="Книги">Книги</div>
                 <div class="wish-item" data-gift="Вино">Вино</div>
@@ -395,50 +451,78 @@
                     <input type="text" id="food" placeholder="Вегетарианец, аллергия и т.д.">
                 </div>
                 
-                <button type="submit" class="heart-btn">Я приду</button>
+                <button type="submit" class="heart-btn">Я приду!</button>
             </form>
         </div>
     </div>
     
     <script>
-        // Создаем падающие сердечки
+        // Создаем летающие сердечки
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '❤';
             
             // Случайные параметры
-            const size = Math.random() * 20 + 15; // 15-35px
-            const left = Math.random() * 100; // 0-100% ширины экрана
-            const duration = Math.random() * 5 + 5; // 5-10 секунд
-            const delay = Math.random() * 5; // 0-5 секунд задержки
-            const opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8 прозрачность
+            const left = Math.random() * 100;
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
+            const size = Math.random() * 20 + 20;
             
             heart.style.left = `${left}%`;
-            heart.style.fontSize = `${size}px`;
             heart.style.animationDuration = `${duration}s`;
             heart.style.animationDelay = `${delay}s`;
-            heart.style.opacity = opacity;
+            heart.style.fontSize = `${size}px`;
             
-            // Случайный цвет из розовой палитры
-            const pinkShades = ['#FF9EB7', '#FF85A2', '#FF6B8B', '#FFB7C5', '#FFD6DE'];
-            heart.style.color = pinkShades[Math.floor(Math.random() * pinkShades.length)];
+            // Случайный цвет
+            const colors = ['#FF3E6D', '#FF85A2', '#FF9ECF', '#FFB7E4'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
             
-            document.getElementById('hearts-container').appendChild(heart);
+            document.getElementById('animation-container').appendChild(heart);
             
-            // Удаляем сердечко после завершения анимации
+            // Удаляем сердечко после анимации
             setTimeout(() => {
                 heart.remove();
             }, (duration + delay) * 1000);
         }
         
-        // Создаем несколько сердечек сразу
-        for (let i = 0; i < 20; i++) {
+        // Создаем бегающих котят
+        function createKitten() {
+            const kitten = document.createElement('div');
+            kitten.className = 'kitten';
+            
+            // Случайные параметры
+            const top = Math.random() * 80 + 10;
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 5;
+            const size = Math.random() * 40 + 60;
+            
+            kitten.style.top = `${top}%`;
+            kitten.style.animationDuration = `${duration}s`;
+            kitten.style.animationDelay = `${delay}s`;
+            kitten.style.width = `${size}px`;
+            kitten.style.height = `${size}px`;
+            
+            document.getElementById('animation-container').appendChild(kitten);
+            
+            // Удаляем котенка после анимации
+            setTimeout(() => {
+                kitten.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // Запускаем создание сердечек и котят
+        setInterval(createHeart, 800);
+        setInterval(createKitten, 3000);
+        
+        // Сразу создаем несколько элементов
+        for (let i = 0; i < 15; i++) {
             setTimeout(createHeart, i * 300);
         }
         
-        // Продолжаем создавать сердечки каждые 0.5 секунды
-        setInterval(createHeart, 500);
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createKitten, i * 1000);
+        }
         
         // Обработка вишлиста
         let selectedGift = null;
@@ -446,19 +530,16 @@
             item.addEventListener('click', function() {
                 const giftName = this.getAttribute('data-gift');
                 
-                // Если подарок уже выбран, отменяем выбор
                 if (this.classList.contains('selected')) {
                     this.classList.remove('selected');
                     selectedGift = null;
                     return;
                 }
                 
-                // Снимаем выделение с других подарков
                 document.querySelectorAll('.wish-item').forEach(i => {
                     i.classList.remove('selected');
                 });
                 
-                // Выделяем текущий подарок
                 this.classList.add('selected');
                 selectedGift = giftName;
             });
@@ -470,28 +551,32 @@
             
             const name = document.getElementById('name').value;
             
-            // Обновляем информацию о бронировании подарка
+            // Показываем котенка с шампанским
+            const kitten = document.getElementById('final-kitten');
+            kitten.style.bottom = '50px';
+            
+            // Обновляем информацию о бронировании
             if (selectedGift) {
                 document.querySelectorAll('.wish-item').forEach(item => {
                     if (item.classList.contains('selected')) {
-                        item.innerHTML = `${item.getAttribute('data-gift')} <span style="font-size:0.8em;font-weight:normal;">(забронировано: ${name})</span>`;
+                        item.innerHTML = `${item.getAttribute('data-gift')} <span style="font-size:0.9em;font-weight:normal;">(забронировано: ${name})</span>`;
                     }
                 });
             }
             
-            // Создаем всплывающее уведомление
+            // Создаем уведомление
             const notification = document.createElement('div');
-            notification.textContent = `Ура, ${name}! Жду тебя на празднике! ❤️`;
+            notification.textContent = `Ура, ${name}! Жду тебя на празднике! 🎉`;
             notification.style.position = 'fixed';
-            notification.style.bottom = '20px';
+            notification.style.bottom = '150px';
             notification.style.left = '50%';
             notification.style.transform = 'translateX(-50%)';
-            notification.style.backgroundColor = 'var(--rose)';
+            notification.style.backgroundColor = 'var(--purple)';
             notification.style.color = 'white';
             notification.style.padding = '15px 30px';
             notification.style.borderRadius = '30px';
             notification.style.zIndex = '1000';
-            notification.style.boxShadow = '0 5px 20px rgba(255, 133, 162, 0.6)';
+            notification.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
             notification.style.animation = 'fadeIn 0.5s';
             
             document.body.appendChild(notification);
@@ -504,11 +589,10 @@
                 }, 500);
             }, 3000);
             
-            // Сбрасываем форму
             this.reset();
         });
         
-        // Добавляем стили для анимации уведомлений
+        // Добавляем анимации для уведомлений
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
