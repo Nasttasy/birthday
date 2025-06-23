@@ -192,39 +192,20 @@
             margin-top: 20px;
         }
         
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
+        /* Стили для Яндекс Формы */
+        .yandex-form-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--green);
         }
 
-        .checkbox-option {
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 8px 15px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--green);
-        }
-
-        .checkbox-option input {
-            margin-right: 8px;
-        }
-        
-        .poll-option {
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .poll-option input {
-            margin-right: 10px;
-            accent-color: var(--red);
-        }
-        
-        .poll-option label {
-            font-size: 1.1rem;
+        .yandex-form-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         .heart-button {
@@ -323,8 +304,14 @@
             .content, .poll {
                 padding: 20px;
             }
+            
+            .yandex-form-container {
+                height: 700px;
+            }
         }
     </style>
+    <!-- Скрипт Яндекс Форм -->
+    <script src="https://forms.yandex.ru/_static/embed.js"></script>
 </head>
 <body>
     <div class="container">
@@ -360,7 +347,7 @@
             <h2>🎁 Вишлист</h2>
             <div class="poll">
                 <p>Выберите подарок и перейдите по ссылке для бронирования:</p>
-                <p style="font-style: italic; margin-top: 10px;">Я коплю на сумку, и буду рада денежному вкладу в это дело:) Однако вот небольшой список подарков, которым я буду рада  <span class="emoji">🕊️</span></p>
+                <p style="font-style: italic; margin-top: 10px;">Я коплю на сумку, и буду рада денежному вкладу в это дело:) Однако вот небольшой список подарков, которым я буду рада <span class="emoji">🕊️</span></p>
                 <div class="wishlist">
                     <a href="https://randewoo.ru/product/the-hedonist?preferred=410982" class="wishlist-item" target="_blank" onclick="return bookGift(this, 'Парфюм Ex Nihilo The Hedonist')">
                         🌸 Парфюм Ex Nihilo The Hedonist
@@ -381,20 +368,19 @@
             </div>
         </div>
 
-       <div class="section">
-    <h2>🍽️ Опрос</h2>
-    <div class="poll">
-        <iframe 
-            src="https://forms.yandex.ru/surveys/13760881.9cef3b58ff314547cc38e0a95fde9f1d64c5c5d7?iframe=1"
-            height="600" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0"
-            style="border-radius: 10px; border: 1px solid #588157;">
-            Загрузка формы...
-        </iframe>
-    </div>
-</div>
+        <div class="section">
+            <h2>🍽️ Опрос</h2>
+            <div class="poll">
+                <div class="yandex-form-container">
+                    <iframe 
+                        src="https://forms.yandex.ru/cloud/65e1b0b9e4a0842c5d3f8a6a/?iframe=1"
+                        frameborder="0" 
+                        name="ya-form-65e1b0b9e4a0842c5d3f8a6a"
+                        width="100%">
+                    </iframe>
+                </div>
+            </div>
+        </div>
 
         <button class="heart-button" onclick="confirmAttendance()">Я приду!</button>
     </div>
@@ -442,20 +428,11 @@
             if (!element.classList.contains('booked')) {
                 if (confirm(`Вы уверены, что хотите забронировать "${giftName}"?`)) {
                     element.classList.add('booked');
-                    
-                    // В реальном проекте здесь нужно отправить данные на сервер
-                    // Например: 
-                    // fetch('/api/book-gift', { 
-                    //   method: 'POST',
-                    //   body: JSON.stringify({ gift: giftName, user: 'Имя пользователя' })
-                    // });
-                    
-                    // Временное решение для демонстрации:
                     localStorage.setItem(`gift_${giftName}`, 'booked');
                     alert(`Подарок "${giftName}" забронирован! Спасибо!`);
-                    return true; // Продолжить переход по ссылке
+                    return true;
                 }
-                return false; // Отменить действие
+                return false;
             }
             alert('Этот подарок уже забронирован!');
             return false;
@@ -465,12 +442,9 @@
         function checkBookedGifts() {
             document.querySelectorAll('.wishlist-item').forEach(item => {
                 const giftText = item.textContent.trim();
-                // Удаляем эмодзи для создания ключа
                 const giftName = giftText.replace(/[^\w\sа-яА-Я]/g, '').trim();
                 if (localStorage.getItem(`gift_${giftName}`)) {
                     item.classList.add('booked');
-                    // В реальном проекте нужно отключить ссылку только если подарок забронирован другим человеком
-                    // item.href = 'javascript:void(0)';
                 }
             });
         }
@@ -481,21 +455,7 @@
             btn.textContent = 'Ура! Жду тебя!';
             btn.style.background = 'linear-gradient(45deg, var(--green), #588157)';
             btn.style.boxShadow = '0 5px 20px rgba(88, 129, 87, 0.4)';
-            
-            // Проверяем, заполнен ли опрос
-            const alcoholSelected = document.querySelectorAll('input[name="alcohol"]:checked').length > 0;
-            const foodSelected = document.querySelector('input[name="food"]:checked');
-            
-            if (!alcoholSelected || !foodSelected) {
-                alert('Спасибо за подтверждение! 🎉\n\nНе забудьте выбрать предпочтения по еде и напиткам в опросе выше.');
-            } else {
-                const alcoholPrefs = Array.from(document.querySelectorAll('input[name="alcohol"]:checked'))
-                    .map(el => el.nextSibling.textContent.trim()).join(', ');
-                
-                alert(`Спасибо, что приходишь! Будет весело! 🎉\n\nТвои предпочтения:\nНапитки: ${alcoholPrefs}\nЕда: ${foodSelected.nextSibling.textContent.trim()}`);
-            }
-            
-            // В реальном проекте здесь можно отправить данные на сервер
+            alert('Спасибо за подтверждение! 🎉');
         }
         
         // Инициализация при загрузке страницы
@@ -503,8 +463,10 @@
             createBasilLeaves();
             checkBookedGifts();
             
-            // В реальном проекте здесь можно загрузить данные о забронированных подарках с сервера
-            // fetch('/api/booked-gifts').then(...);
+            // Инициализация Яндекс Формы
+            if (typeof Ya !== 'undefined' && Ya.Form) {
+                Ya.Form.init();
+            }
         };
     </script>
 </body>
