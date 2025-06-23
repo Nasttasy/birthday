@@ -5,46 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Итальянская Вечеринка | 29 лет</title>
     <style>
-        /* ... (все предыдущие стили остаются без изменений) ... */
-
-        /* Новые стили для формы */
-        .form-container {
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto:wght@400;500&display=swap');
+        
+        :root {
+            --red: #E63946;
+            --white: #F1FAEE;
+            --green: #588157;
+            --orange: #F4A261;
+            --dark: #2F3E46;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            background: url('https://i.pinimg.com/564x/7n/3Y/yA/7n3YyAvqm.jpg') center/cover no-repeat fixed;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        body:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 650px;
+            height: 100%;
+            background: rgba(244, 162, 97, 0.85);
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 800px;
             margin: 0 auto;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px dashed var(--green);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--red);
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .content {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--red);
+        }
+        
+        p, li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--red);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 5px;
+            top: -3px;
+        }
+        
+        .emoji {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+        
+        .highlight {
+            background-color: rgba(230, 57, 70, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 3px solid var(--red);
+        }
+        
+        .address {
+            font-weight: 500;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border: 2px solid var(--green);
         }
-
-        .form-title {
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--red);
+            font-size: 2rem;
+            margin-top: 0;
+            font-style: italic;
             text-align: center;
-            margin-bottom: 20px;
-            font-family: 'Druk Cyrillic', serif;
+            border-bottom: 2px dashed var(--orange);
+            padding-bottom: 10px;
+        }
+        
+        .wishlist {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .wishlist-item {
+            background-color: var(--white);
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--green);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            color: var(--dark);
+            margin: 5px;
+            position: relative;
         }
 
+        .wishlist-item.booked {
+            background-color: #f0f0f0;
+            color: #999;
+            border-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .wishlist-item.booked:after {
+            content: "✓ Забронировано";
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .wishlist-item:hover:not(.booked) {
+            background-color: var(--red);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        /* Стили для формы */
+        .poll {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .form-group {
             margin-bottom: 20px;
         }
-
+        
         .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
-
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .form-select {
+        
+        .form-input, .form-select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -52,11 +216,15 @@
             font-size: 16px;
             background-color: white;
         }
-
+        
+        textarea.form-input {
+            min-height: 100px;
+        }
+        
         .form-checkbox {
             margin-right: 10px;
         }
-
+        
         .form-submit {
             background: linear-gradient(45deg, var(--red), #D62839);
             color: white;
@@ -69,102 +237,307 @@
             margin: 30px auto 0;
             width: 200px;
             text-align: center;
+            transition: all 0.3s ease;
         }
-
+        
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        .heart-button {
+            display: block;
+            width: 220px;
+            margin: 40px auto;
+            padding: 18px;
+            text-align: center;
+            background: linear-gradient(45deg, var(--red), #D62839);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .heart-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateY(-5px) scale(1); }
+            50% { transform: translateY(-5px) scale(1.05); }
+            100% { transform: translateY(-5px) scale(1); }
+        }
+        
+        .heart-button:before {
+            content: "❤️";
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+        
+        .basil-leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23588157" d="M50 10Q30 30 20 50Q10 70 30 85Q50 100 70 85Q90 70 80 50Q70 30 50 10Z"/></svg>');
+            background-size: contain;
+            z-index: 0;
+            opacity: 0.8;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(10deg); }
+        }
+        
+        .basil-leaf:hover {
+            animation: explode 0.5s forwards;
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        .pizza {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23F4A261"/><circle cx="50" cy="50" r="40" fill="%23E9C46A"/><circle cx="30" cy="40" r="5" fill="%23E63946"/><circle cx="60" cy="35" r="5" fill="%23E63946"/><circle cx="45" cy="60" r="5" fill="%23E63946"/><circle cx="70" cy="55" r="5" fill="%23E63946"/><path d="M50 50L50 10" stroke="%232F3E46" stroke-width="2"/></svg>');
+            animation: spin 20s linear infinite;
+            z-index: 100;
+            cursor: pointer;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
         @media (max-width: 768px) {
-            .form-container {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
                 padding: 15px;
+            }
+            
+            .content, .poll {
+                padding: 20px;
+            }
+            
+            .wishlist-item {
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ... (вся предыдущая разметка до секции опроса остается без изменений) ... -->
+    <div class="container">
+        <header>
+            <h1>🍕 Итальянская Вечеринка! 🍷</h1>
+            <p style="font-size: 1.3rem; margin-top: 10px; font-style: italic;">Приглашаю отпраздновать мой 29-й День Рождения!</p>
+        </header>
 
-    <div class="section">
-        <h2>🍽️ Опрос</h2>
-        <div class="poll">
-            <div class="form-container">
-                <h3 class="form-title">Подтвердите участие</h3>
-                
-                <form id="partyForm" action="https://formspree.io/f/your-form-id" method="POST">
-                    <div class="form-group">
-                        <label class="form-label" for="name">Ваше имя:</label>
-                        <input class="form-input" type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Вы придёте?</label>
-                        <select class="form-select" name="attendance" required>
-                            <option value="">Выберите вариант</option>
-                            <option value="yes">Да, обязательно!</option>
-                            <option value="maybe">Возможно</option>
-                            <option value="no">К сожалению, не смогу</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Какие напитки предпочитаете?</label>
-                        <div>
-                            <label><input type="checkbox" name="drinks" value="wine" class="form-checkbox"> Вино</label><br>
-                            <label><input type="checkbox" name="drinks" value="champagne" class="form-checkbox"> Шампанское</label><br>
-                            <label><input type="checkbox" name="drinks" value="strong" class="form-checkbox"> Крепкий алкоголь</label><br>
-                            <label><input type="checkbox" name="drinks" value="beer" class="form-checkbox"> Пиво/сидр</label><br>
-                            <label><input type="checkbox" name="drinks" value="none" class="form-checkbox"> Не пью алкоголь</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Предпочтения в еде:</label>
-                        <div>
-                            <label><input type="radio" name="food" value="meat" class="form-checkbox" required> Мясоед</label><br>
-                            <label><input type="radio" name="food" value="vegetarian" class="form-checkbox"> Вегетарианец</label><br>
-                            <label><input type="radio" name="food" value="all" class="form-checkbox"> Ем всё!</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="comments">Ваши пожелания или комментарии:</label>
-                        <textarea class="form-input" id="comments" name="comments" rows="4"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="form-submit">Отправить</button>
-                </form>
+        <div class="content">
+            <p><span class="emoji">🇮🇹</span> <strong>Дорогие друзья!</strong></p>
+            
+            <p>Если вам нравится паста, вино и безудержное веселье — значит, вы точно должны быть <strong>12 июля в 17:00</strong> на моем Дне Рождения!</p>
+            
+            <p>Я обещаю:</p>
+            <ul>
+                <li><span class="emoji">🍝</span> <strong>Атмосферу Италии</strong> (ну почти... если закрыть глаза и представить)</li>
+                <li><span class="emoji">🍰</span> <strong>Вкуснейшую еду</strong> (будет даже тирамису, но без гарантии, что он доживет до вашего прихода)</li>
+                <li><span class="emoji">🍷</span> <strong>Отличное вино</strong> (а если не допьёте — можно унести с собой, мне потом на работу)</li>
+                <li><span class="emoji">🎁</span> <strong>Конкурсы и призы</strong> (главный приз — моя вечная любовь... или бутылка Просекко)</li>
+                <li><span class="emoji">😄</span> <strong>Моё общество</strong> (да-да, тот самый человек, который знает все лучшие анекдоты про итальянцев)</li>
+            </ul>
+            
+            <div class="highlight">
+                <p><span class="emoji">📍</span> <strong>Место встречи:</strong> Москва, ул. Льва Толстого, 16, подъезд 1</p>
+                <p><span class="emoji">🕒</span> <strong>Дата и время:</strong> 12 июля, 17:00</p>
+                <p><span class="emoji">👗</span> <strong>Дресс-код:</strong> что-то удобное и красивое (или просто приходите как есть!)</p>
+                <p style="font-style: italic; margin-top: 10px;">Если заблудитесь — звоните, вышлю голубя с картой <span class="emoji">🕊️</span></p>
+            </div>
+            
+            <p style="text-align: center; font-size: 1.2rem;"><span class="emoji">😊</span> Подтвердите, пожалуйста, участие до 5 июля!</p>
+        </div>
+
+        <div class="section">
+            <h2>🎁 Вишлист</h2>
+            <div class="poll">
+                <p>Выберите подарок и перейдите по ссылке для бронирования:</p>
+                <div class="wishlist">
+                    <a href="https://randewoo.ru/product/the-hedonist?preferred=410982" class="wishlist-item" target="_blank" onclick="return bookGift(this, 'Парфюм Ex Nihilo The Hedonist')">
+                        🌸 Парфюм Ex Nihilo The Hedonist
+                    </a>
+                    <a href="https://goldapple.ru/cards" class="wishlist-item" target="_blank" onclick="return bookGift(this, 'Сертификат в Золотое Яблоко')">
+                        🌟 Сертификат в Золотое Яблоко
+                    </a>
+                    <a href="https://randewoo.ru/product/sea-breeze?preferred=479172" class="wishlist-item" target="_blank" onclick="return bookGift(this, 'Парфюм BYBOZO Sea Breeze')">
+                        🌼 Парфюм BYBOZO Sea Breeze
+                    </a>
+                    <a href="https://randewoo.ru/product/vilhelm-parfumerie-morning-chess?preferred=403608" class="wishlist-item" target="_blank" onclick="return bookGift(this, 'Парфюм Vilhelm Parfumerie Morning Chess')">
+                        🌻 Парфюм Vilhelm Parfumerie Morning Chess
+                    </a>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 20px; text-align: center;">
+                    После бронирования подарок будет отмечен как "забронированный"
+                </p>
             </div>
         </div>
-    </div>
 
-    <!-- ... (остальная часть кода остается без изменений) ... -->
+        <div class="section">
+            <h2>🍽️ Опрос</h2>
+            <div class="poll">
+                <div class="form-container">
+                    <form id="partyForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Ваше имя:</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Вы придёте?</label>
+                            <select class="form-select" required>
+                                <option value="">Выберите вариант</option>
+                                <option value="yes">Да, с радостью!</option>
+                                <option value="maybe">Возможно</option>
+                                <option value="no">К сожалению, не смогу</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Какие напитки предпочитаете? (можно несколько)</label>
+                            <div>
+                                <label><input type="checkbox" name="wine" class="form-checkbox"> Вино</label><br>
+                                <label><input type="checkbox" name="champagne" class="form-checkbox"> Шампанское</label><br>
+                                <label><input type="checkbox" name="strong" class="form-checkbox"> Крепкий алкоголь</label><br>
+                                <label><input type="checkbox" name="beer" class="form-checkbox"> Пиво/сидр</label><br>
+                                <label><input type="checkbox" name="none" class="form-checkbox"> Не пью алкоголь</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Предпочтения в еде:</label>
+                            <div>
+                                <label><input type="radio" name="food" value="meat" class="form-checkbox" required> Мясоед</label><br>
+                                <label><input type="radio" name="food" value="veg" class="form-checkbox"> Вегетарианец</label><br>
+                                <label><input type="radio" name="food" value="all" class="form-checkbox"> Ем всё!</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="comments">Ваши пожелания или комментарии:</label>
+                            <textarea id="comments" class="form-input" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit">Отправить ответ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <button class="heart-button" onclick="confirmAttendance()">Я приду!</button>
+    </div>
+    
+    <div class="pizza" onclick="this.style.display='none'"></div>
 
     <script>
-        // ... (остальной JavaScript остается без изменений) ...
+        // Создаем летающие листики базилика
+        function createBasilLeaves() {
+            const container = document.querySelector('body');
+            const leafCount = 12;
+            
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('basil-leaf');
+                
+                // Рандомные позиции
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.top = Math.random() * 100 + 'vh';
+                
+                // Рандомные размеры
+                const size = Math.random() * 20 + 20;
+                leaf.style.width = size + 'px';
+                leaf.style.height = size + 'px';
+                
+                // Рандомная анимация
+                leaf.style.animationDuration = Math.random() * 10 + 5 + 's';
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Добавляем обработчик
+                leaf.addEventListener('mouseover', function() {
+                    this.style.animation = 'explode 0.5s forwards';
+                    setTimeout(() => {
+                        this.remove();
+                        createBasilLeaves(1);
+                    }, 500);
+                });
+                
+                container.appendChild(leaf);
+            }
+        }
+        
+        // Функция бронирования подарка
+        function bookGift(element, giftName) {
+            if (!element.classList.contains('booked')) {
+                if (confirm(`Вы уверены, что хотите забронировать "${giftName}"?`)) {
+                    element.classList.add('booked');
+                    localStorage.setItem(`gift_${giftName}`, 'booked');
+                    alert(`Подарок "${giftName}" забронирован! Спасибо!`);
+                    return true;
+                }
+                return false;
+            }
+            alert('Этот подарок уже забронирован!');
+            return false;
+        }
 
+        // Проверяем при загрузке, какие подарки уже забронированы
+        function checkBookedGifts() {
+            document.querySelectorAll('.wishlist-item').forEach(item => {
+                const giftText = item.textContent.trim();
+                const giftName = giftText.replace(/[^\w\sа-яА-Я]/g, '').trim();
+                if (localStorage.getItem(`gift_${giftName}`)) {
+                    item.classList.add('booked');
+                }
+            });
+        }
+
+        // Функция подтверждения присутствия
+        function confirmAttendance() {
+            const btn = document.querySelector('.heart-button');
+            btn.textContent = 'Ура! Жду тебя!';
+            btn.style.background = 'linear-gradient(45deg, var(--green), #588157)';
+            btn.style.boxShadow = '0 5px 20px rgba(88, 129, 87, 0.4)';
+            alert('Спасибо за подтверждение! 🎉');
+        }
+        
         // Обработка формы
         document.getElementById('partyForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Здесь можно добавить отправку данных через AJAX
-            fetch(this.action, {
-                method: this.method,
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Спасибо! Ваш ответ сохранён.');
-                    this.reset();
-                } else {
-                    throw new Error('Ошибка отправки формы');
-                }
-            })
-            .catch(error => {
-                alert('Произошла ошибка. Пожалуйста, попробуйте ещё раз.');
-                console.error(error);
-            });
+            alert('Спасибо! Ваши ответы сохранены.\nЯ свяжусь с вами для подтверждения деталей.');
+            this.reset();
         });
-
+        
         // Инициализация при загрузке страницы
         window.onload = function() {
             createBasilLeaves();
